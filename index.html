@@ -1,5 +1,8 @@
 <html>
 <script>
+(async function(){
 document.getElementsByTagName("html")[0].innerHTML = await window.fetch("/api/new.rs")
-    .then(response => response.text());</script>
+    .then(response => response.text());
+})();
+</script>
 </html>
