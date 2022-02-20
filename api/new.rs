@@ -16,7 +16,7 @@ fn handler(_: Request) -> Result<impl IntoResponse, VercelError> {
             }
             body {
                 // attributes
-                h1(id="heading", class="title") : my_title;
+                h1(id="heading", class="title") : "Hello, World!";
                 p {
                     // Insert escaped text
                     : "Hello! This is <html />";
@@ -48,7 +48,7 @@ fn handler(_: Request) -> Result<impl IntoResponse, VercelError> {
     let response = Response::builder()
         .status(StatusCode::OK)
         .header("Content-Type", "text/plain")
-        .body("Hello World")
+        .body(document.to_string())
         .expect("Internal Server Error");
 
     Ok(response)

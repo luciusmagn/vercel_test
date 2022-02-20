@@ -12,3 +12,7 @@ vercel_lambda = "*"
 [lib]
 name = "util"
 path = "_util.rs"
+
+[[bin]]
+name = "lel"
+path = "new.rs"
