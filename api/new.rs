@@ -12,7 +12,7 @@ fn handler(_: Request) -> Result<impl IntoResponse, VercelError> {
         html {
             head {
                 // Use a variable
-                title : my_title;
+                title : "Hello, world!";
             }
             body {
                 // attributes
