@@ -3,6 +3,7 @@ use std::error::Error;
 use vercel_lambda::{error::VercelError, lambda, IntoResponse, Request, Response};
 
 use horrorshow::helper::doctype;
+use horrorshow::html;
 use horrorshow::prelude::*;
 
 fn handler(_: Request) -> Result<impl IntoResponse, VercelError> {
