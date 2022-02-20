@@ -1,0 +1,6 @@
+<html>
+<script>
+window.fetch("/api/new.rs")
+	.then(response => document.getElementsByTagName("html").innerHTML = response.text());
+</script>
+</html>
