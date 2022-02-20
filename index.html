@@ -1,6 +1,5 @@
 <html>
 <script>
-window.fetch("/api/new.rs")
-	.then(response => document.getElementsByTagName("html").innerHTML = response.text());
-</script>
+document.getElementsByTagName("html")[0].innerHTML = await window.fetch("/api/new.rs")
+    .then(response => response.text());</script>
 </html>
