@@ -4,7 +4,6 @@ use vercel_lambda::{error::VercelError, lambda, IntoResponse, Request, Response}
 
 use horrorshow::helper::doctype;
 use horrorshow::html;
-use horrorshow::prelude::*;
 
 fn handler(_: Request) -> Result<impl IntoResponse, VercelError> {
     let document = html! {
@@ -13,34 +12,35 @@ fn handler(_: Request) -> Result<impl IntoResponse, VercelError> {
             head {
                 // Use a variable
                 title : "Hello, world!";
-            }
-            body {
-                // attributes
-                h1(id="heading", class="title") : "Hello, World!";
-                p {
-                    // Insert escaped text
-                    : "Hello! This is <html />";
+                link(rel="preload", href="Joan-Regular.woff2", as="font", type="font/woff2");
+                link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic");
+                link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css");
+                link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css");
+                style {
+                    : include_str!("../static/font-styles.css")
                 }
-                p {
-                    // Insert raw text (unescaped)
-                    : Raw("Let's <i>count</i> to 10!");
-                }
-                ol(id="count") {
-                    // You can embed for loops, while loops, and if statements.
-                    @ for i in 0..10 {
-                        li(first? = (i == 0), class="item") {
-                            // Format some text.
-                            : format_args!("{}", i+1)
+                style {
+                    : "
+                        body {
+                            font-family: 'Joan';
+                            color: black;
                         }
-                    }
+                        #heading {
+                            text-align: center;
+                            width: 100%;
+                            padding: 10rem;
+                            font-size: 20rem;
+                            font-weight: 300;
+                        }
+                    "
                 }
-                // You need semi-colons for tags without children.
-                br; br;
+            }
+            body(class="container") {
+                header(class="row") {
+                    h1(id="heading") : "Tau";
+                }
                 p {
-                    // You can also embed closures.
-                    |tmpl| {
-                        tmpl << "Easy!";
-                    }
+                    : "Hello! This is <html />";
                 }
             }
         }
@@ -56,5 +56,5 @@ fn handler(_: Request) -> Result<impl IntoResponse, VercelError> {
 
 // Start the runtime with the handler
 fn main() -> Result<(), Box<dyn Error>> {
-    Ok(lambda!(handler))
+    Ok(lambda!(|r| handler(r)))
 }

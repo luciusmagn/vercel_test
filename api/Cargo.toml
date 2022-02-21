@@ -5,8 +5,10 @@ authors = ["Your Name <your@site.com>"]
 edition = "2018"
 
 [dependencies]
+etch = { version = "0.4.2", features = ["syntect-plugin"] }
 horrorshow = "0.8.4"
 http = "0.1"
+jss = "0.4.0"
 vercel_lambda = "*"
 
 [lib]
